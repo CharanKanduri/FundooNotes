@@ -54,6 +54,30 @@ namespace Manager.Manager
             }
         }
 
+        public List<LabelModel> GetLabelByNoteId(int noteId)
+        {
+            try
+            {
+                return this.labelRepository.GetLabelByNoteId(noteId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<LabelModel> GetLabelUsingUserId(int userId)
+        {
+            try
+            {
+                return this.labelRepository.GetLabelUsingUserId(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string RemoveLabelUsingEditLebels(string lable, int userId)
         {
             try

@@ -21,7 +21,7 @@ namespace Repository.Repository
         {
             try
             {
-                var oldLabel = this.userContext.Labels.Where(label => label.LabelName == lableModel.LabelName && label.UserId == lableModel.UserId && label.NotesId == lableModel.NotesId).SingleOrDefault();
+                var oldLabel = this.userContext.Labels.Where(label => label.LabelName == lableModel.LabelName && label.UserId == lableModel.UserId && label.NotesId == null).SingleOrDefault();
                 if (oldLabel == null)
                 {
                     this.userContext.Labels.Add(lableModel);
@@ -59,10 +59,19 @@ namespace Repository.Repository
         {
             try
             {
+                string message = "";
+                var checkExisting = this.userContext.Labels.Where(label => label.LabelName==newLabelName && label.NotesId == null && label.UserId == userId).SingleOrDefault();
                 var labelList = this.userContext.Labels.Where(label => label.LabelName == labelName && label.UserId == userId).ToList();
               
                 if (labelList.Count != 0)
-                {
+                {   
+                    if (checkExisting != null)
+                    {
+                        this.userContext.Labels.Remove(checkExisting);
+                        this.userContext.SaveChanges();
+                        message = "Merge the '" + labelName + "' label with the '" + newLabelName + "' label? All notes labeled with '" + labelName + "' will be labeled with '" + newLabelName + "', and the '" + labelName + "' label will be deleted.";
+                        return message;
+                    }
                     foreach (var label in labelList)
                     {
                         label.LabelName = newLabelName;
@@ -84,7 +93,7 @@ namespace Repository.Repository
         {
             try
             {
-                var oldLabel = this.userContext.Labels.Where(label => label.LabelName == lableModel.LabelName && label.UserId == lableModel.UserId && label.NotesId == null).SingleOrDefault();
+                var oldLabel = this.userContext.Labels.Where(label => label.LabelName == lableModel.LabelName && label.UserId == lableModel.UserId && label.NotesId == lableModel.NotesId).SingleOrDefault();
                 if (oldLabel == null)
                 {
                     this.userContext.Labels.Add(lableModel);
@@ -112,6 +121,40 @@ namespace Repository.Repository
                 }
 
                 return "Remove label failed";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public List<LabelModel> GetLabelUsingUserId(int userId)
+        {
+            try
+            {
+                var listLabel = this.userContext.Labels.Where(label => userId == label.UserId && label.NotesId == null).ToList();
+                if (listLabel.Count != 0)
+                {
+                    return listLabel;
+                }
+
+                return null;
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public List<LabelModel> GetLabelByNoteId(int noteId)
+        {
+            try
+            {
+                var label = this.userContext.Labels.Where(x => x.NotesId == noteId).ToList();
+                if (label.Count != 0)
+                {
+                    return label;
+                }
+
+                return null;
             }
             catch (Exception ex)
             {
