@@ -42,11 +42,11 @@ namespace Manager.Manager
             }
         }
 
-        public string EditLabelUsingEdit(int userId, string labelName, string newLabelName)
+        public string EditLabelUsingEdit(LabelModel lableModel, string newLabelName)
         {
             try
             {
-                return this.labelRepository.EditLabelUsingEdit(userId, labelName, newLabelName);
+                return this.labelRepository.EditLabelUsingEdit(lableModel, newLabelName);
             }
             catch (Exception ex)
             {
@@ -77,12 +77,12 @@ namespace Manager.Manager
                 throw new Exception(ex.Message);
             }
         }
-        //string RemoveLabelUsingEditLebels(LabelModel lableModel, int userId);
+        
         public string RemoveLabelUsingEditLebels(LabelModel lableModel, int userId)
         {
             try
             {
-                return this.labelRepository.RemoveLabelUsingEditLebels(lable,userId);
+                return this.labelRepository.RemoveLabelUsingEditLebels(lableModel, userId);
             }
             catch (Exception ex)
             {

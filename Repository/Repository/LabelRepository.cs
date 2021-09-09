@@ -36,11 +36,11 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
-        public string RemoveLabelUsingEditLebels(string labelName, int userId)
+        public string RemoveLabelUsingEditLebels(LabelModel lableModel,int userId)
         {
             try
             {
-                var labelList = this.userContext.Labels.Where(label => label.LabelName == labelName && label.UserId == userId).ToList();
+                var labelList = this.userContext.Labels.Where(label => label.LabelName == lableModel.LabelName && label.UserId == userId).ToList();
                 if (labelList.Count != 0)
                 {
                     this.userContext.Labels.RemoveRange(labelList);
@@ -55,7 +55,7 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
-        public string EditLabelUsingEdit(int userId, string labelName, string newLabelName)
+        public string EditLabelUsingEdit(LabelModel lableModel, string newLabelName)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Repository.Repository
                     this.userContext.Labels.Add(lableModel);
                     this.userContext.SaveChanges();
                     lableModel.NotesId = null;
-                    lableModel.LabelId = 0;
+                    lableModel.LabelId = 0; 
                     this.AddLableUsingEditLabels(lableModel);
                     return "Label created";
                 }

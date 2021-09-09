@@ -110,17 +110,16 @@
         /// <summary>
         /// edit the label using editLabels.
         /// </summary>
-        /// <param name="userId">The label name.</param>
-        /// <param name="labelName">The user Id.</param>
+        /// <param name="lableModel">The label model.</param>
         /// <param name="newLabelName">The new label name.</param>
         /// <returns>Returns exception.</returns>
         [HttpPut]
         [Route("api/EditLabelUsingEdit")]
-        public IActionResult EditLabelUsingEdit(int userId, string labelName, string newLabelName)
+        public IActionResult EditLabelUsingEdit(LabelModel lableModel, string newLabelName)
         {
             try
             {
-                string result = this.labelManager.EditLabelUsingEdit(userId, labelName, newLabelName);
+                string result = this.labelManager.EditLabelUsingEdit(lableModel, newLabelName);
                 if (result != "Couldn't update Label")
                 {
                     return this.Ok(new ResponseModel<string>() { Status = true, Message = result });
