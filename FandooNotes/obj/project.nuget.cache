@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "q7UlmGDYDOGXNQgQebCZH4JquA3DZVT8o9dNlXdO1SoTaUcYZ5r8twKF8yYvgIGalSonJ7saEV6fcCymIMTPeA==",
+  "dgSpecHash": "0G2HHFeioJgpdNohGihj07SoNory1HCveyrbzvLeLDHlTZ8vgoINS31J+AsFaubP9Q4Vq5pn6n60uMGtRWG8Fw==",
   "success": true,
   "projectFilePath": "C:\\Users\\charan kanduri\\source\\repos\\FandooNotes\\FundooNotes.csproj",
   "expectedPackageFiles": [
@@ -63,6 +63,7 @@
     "C:\\Users\\charan kanduri\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.0\\pipelines.sockets.unofficial.2.2.0.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\stackexchange.redis\\2.2.50\\stackexchange.redis.2.2.50.nupkg.sha512",
+    "C:\\Users\\charan kanduri\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.1\\swashbuckle.aspnetcore.6.2.1.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.1\\swashbuckle.aspnetcore.swagger.6.2.1.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.1\\swashbuckle.aspnetcore.swaggergen.6.2.1.nupkg.sha512",

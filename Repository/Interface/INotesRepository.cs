@@ -19,7 +19,7 @@ namespace Repository.Interface
         bool color(int noteId, string colorName);
         bool RemindMe(int noteId, string date);
         bool RemoveReminder(int noteId);
-        bool Update(int noteId, string title, string description);
+        bool Update(int noteId, NotesModel noteData);
         bool PermanentDelete(int noteId);
         List<NotesModel> GetNotes(int UserId);
         List<NotesModel> GetFromTrash(int UserId);

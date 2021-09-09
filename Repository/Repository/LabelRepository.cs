@@ -98,6 +98,9 @@ namespace Repository.Repository
                 {
                     this.userContext.Labels.Add(lableModel);
                     this.userContext.SaveChanges();
+                    lableModel.NotesId = null;
+                    lableModel.LabelId = 0;
+                    this.AddLableUsingEditLabels(lableModel);
                     return "Label created";
                 }
 

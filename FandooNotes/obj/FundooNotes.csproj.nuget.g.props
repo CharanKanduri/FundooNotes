@@ -36,6 +36,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\charan kanduri\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0</PkgMicrosoft_Extensions_ApiDescription_Server>
+    <PkgStyleCop_Analyzers Condition=" '$(PkgStyleCop_Analyzers)' == '' ">C:\Users\charan kanduri\.nuget\packages\stylecop.analyzers\1.1.118</PkgStyleCop_Analyzers>
     <PkgNLog_Config Condition=" '$(PkgNLog_Config)' == '' ">C:\Users\charan kanduri\.nuget\packages\nlog.config\4.7.11</PkgNLog_Config>
   </PropertyGroup>
 </Project>

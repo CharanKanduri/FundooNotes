@@ -95,33 +95,46 @@ namespace FandooNotes.Repository
                 var userCheck = this.userContext.Users.Where(x => x.Email == email).FirstOrDefault();
                 if (userCheck != null)
                 {
-                    SendMessageToMAMQ();
-                    var msgBody = ReceiveMessageFromMAMQ();
-                    MailMessage mailMessage = new MailMessage("FromEmail", email);
-                    mailMessage.Subject = "Link For reset Password";
-                    mailMessage.Body = msgBody;
-                    mailMessage.IsBodyHtml = true;
-                    SmtpClient Smtp = new SmtpClient();
-                    Smtp.Host = "smtp.gmail.com";
-                    Smtp.EnableSsl = true;
-                    Smtp.UseDefaultCredentials = false;
-                    Smtp.Credentials = new NetworkCredential("FromEmail", "FromEmailPassword");
-                    Smtp.Port = 587;
-                    Smtp.Send(mailMessage);
+                    SendMessageToMSMQ();
+                    SendMail(email);
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        
-        public static void SendMessageToMAMQ()
+        public static void SendMail(string email)
         {
-            var url = "If you want to Rest your credentials for Fundoonotes App Please Click on the link ";
+            try
+            {
+                var msgBody = ReceiveMessageFromMAMQ();
+                MailMessage mailMessage = new MailMessage("FromEmail", email);
+                mailMessage.Subject = "Link For reset Password";
+                mailMessage.Body = msgBody;
+                mailMessage.IsBodyHtml = true;
+                SmtpClient smtpClient = new SmtpClient();
+                smtpClient.Port = 587;
+                smtpClient.Host = "smtp.gmail.com";
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential("FromEmail", "FromEmailPassword");
+                smtpClient.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static void SendMessageToMSMQ()
+        {
+            var url = "Link to reset your password for your Fundoonotes.";
             MessageQueue messageQueue = new MessageQueue();
             if (MessageQueue.Exists(@".\Private$\MyQueue"))
             {
@@ -131,13 +144,12 @@ namespace FandooNotes.Repository
             {
                 messageQueue = MessageQueue.Create(@".\Private$\MyQueue");
             }
+
             Message message = new Message();
             message.Formatter = new BinaryMessageFormatter();
             message.Body = url;
-            messageQueue.Label = "First url link";
             messageQueue.Send(message);
         }
-        // It help to receive and return the message from MAMQ(Microsoft Messaging Queue)
         public static string ReceiveMessageFromMAMQ()
         {
             MessageQueue receiveQueue = new MessageQueue(@".\Private$\MyQueue");
@@ -146,8 +158,6 @@ namespace FandooNotes.Repository
             string linkToBeSend = receivemsg.Body.ToString();
             return linkToBeSend;
         }
-
-
 
         public bool ResetPassword(ResetPasswordModel resetPasswordData)
         {

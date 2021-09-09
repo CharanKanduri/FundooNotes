@@ -77,8 +77,8 @@ namespace Manager.Manager
                 throw new Exception(ex.Message);
             }
         }
-
-        public string RemoveLabelUsingEditLebels(string lable, int userId)
+        //string RemoveLabelUsingEditLebels(LabelModel lableModel, int userId);
+        public string RemoveLabelUsingEditLebels(LabelModel lableModel, int userId)
         {
             try
             {

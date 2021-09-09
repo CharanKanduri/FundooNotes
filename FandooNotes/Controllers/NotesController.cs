@@ -1,15 +1,16 @@
-﻿using Manager.Interface;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace FundooNotes.Controllers
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Manager.Interface;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Models;
 
-namespace FundooNotes.Controllers
-{   [Authorize]
+    [Authorize]
     public class NotesController : ControllerBase
     {
         private readonly INotesManager notesManager;
@@ -40,6 +41,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/Ispin")]
         public IActionResult Ispin(int noteId)
@@ -171,6 +173,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/RemoveReminder")]
         public IActionResult RemoveReminder(int noteId)
@@ -192,13 +195,14 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/Update")]
-        public IActionResult Update(int noteId, string title, string description)
+        public IActionResult Update(int noteId, [FromBody] NotesModel noteData)
         {
             try
             {
-                bool result = this.notesManager.Update(noteId, title, description);
+                bool result = this.notesManager.Update(noteId, noteData);
                 if (result == true)
                 {
                     return this.Ok(new { Status = true, Message = "Notes Updated Successfully: " });
@@ -213,6 +217,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpDelete]
         [Route("api/PermanentDelete")]
         public IActionResult PermanentDelete(int noteId)
@@ -234,6 +239,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/GetNotes")]
         public IActionResult GetNotes(int UserId)
@@ -256,6 +262,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/GetFromTrash")]
         public IActionResult GetFromTrash(int UserId)
@@ -277,6 +284,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/GetAllRemainders")]
         public IActionResult GetAllRemainders(int UserId)
@@ -298,6 +306,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPost]
         [Route("api/GetFromArchieve")]
         public IActionResult GetFromArchieve(int UserId)
@@ -319,6 +328,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpDelete]
         [Route("api/EmptyTrash")]
         public IActionResult EmptyTrash(int UserId)
@@ -362,6 +372,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         [HttpPut]
         [Route("api/RemoveImage")]
         public IActionResult RemoveImage(int noteId)

@@ -226,15 +226,15 @@ namespace Repository.Repository
             }
         }
 
-        public bool Update(int noteId, string title, string description)
+        public bool Update(int noteId,NotesModel noteData)
         {
             try
             {
                 var resultData = this.userContext.Notes.Find(noteId);
                 if (resultData != null && resultData.Trash != true)
                 {
-                    resultData.Title = title;
-                    resultData.Description = description;
+                    resultData.Title = noteData.Title;
+                    resultData.Description = noteData.Description;
                     this.userContext.SaveChanges();
                     return true;
                 }

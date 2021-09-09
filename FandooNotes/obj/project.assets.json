@@ -768,6 +768,9 @@
           "lib/net5.0/StackExchange.Redis.dll": {}
         }
       },
+      "StyleCop.Analyzers/1.1.118": {
+        "type": "package"
+      },
       "Swashbuckle.AspNetCore/6.2.1": {
         "type": "package",
         "dependencies": {
@@ -2407,6 +2410,31 @@
         "stackexchange.redis.nuspec"
       ]
     },
+    "StyleCop.Analyzers/1.1.118": {
+      "sha512": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
+      "type": "package",
+      "path": "stylecop.analyzers/1.1.118",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/StyleCop.Analyzers.CodeFixes.dll",
+        "analyzers/dotnet/cs/StyleCop.Analyzers.dll",
+        "analyzers/dotnet/cs/de-DE/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/en-GB/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/es-MX/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/fr-FR/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/pl-PL/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/pt-BR/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/ru-RU/StyleCop.Analyzers.resources.dll",
+        "stylecop.analyzers.1.1.118.nupkg.sha512",
+        "stylecop.analyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.2.1": {
       "sha512": "j5hM7XhGaZqKu9BOqKzyAlPzqa4qSJF6sE4HFGW4YBnt5ogpJzp4CVbgs8KnV15NngVJMKX6ZErfb50CSb9Chg==",
       "type": "package",
@@ -3177,6 +3205,7 @@
       "Models >= 1.0.0",
       "NLog >= 4.7.11",
       "NLog.Config >= 4.7.11",
+      "StyleCop.Analyzers >= 1.1.118",
       "Swashbuckle.AspNetCore >= 6.2.1",
       "Swashbuckle.AspNetCore.Swagger >= 6.2.1"
     ]
@@ -3257,6 +3286,12 @@
           "NLog.Config": {
             "target": "Package",
             "version": "[4.7.11, )"
+          },
+          "StyleCop.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.1.118, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -129,11 +129,11 @@ namespace Manager.Manager
             }
         }
 
-        public bool Update(int noteId, string title, string description)
+        public bool Update(int noteId, NotesModel noteData)
         {
             try
             {
-                return this.notesRepository.Update(noteId,title, description);
+                return this.notesRepository.Update(noteId,noteData);
             }
             catch (Exception ex)
             {
