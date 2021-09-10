@@ -224,7 +224,25 @@ namespace Repository.Repository
             }
         }
 
-        public bool Update(int noteId,NotesModel noteData)
+        
+
+        public List<NotesModel> GetNotes(int UserId)
+        {
+            try
+            {
+                var resultData = this.userContext.Notes.Where(x=> x.UserId == UserId && x.Trash==false && x.Archieve==false).ToList();
+                if (resultData != null)
+                {
+                    return resultData;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool Update(int noteId, NotesModel noteData)
         {
             try
             {
@@ -243,24 +261,6 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
-
-        public List<NotesModel> GetNotes(int UserId)
-        {
-            try
-            {
-                var resultData = this.userContext.Notes.Where(x=> x.UserId == UserId && x.Trash==false && x.Archieve==false).ToList();
-                if (resultData != null)
-                {
-                    return resultData;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public List<NotesModel> GetFromTrash(int UserId)
         {
             try

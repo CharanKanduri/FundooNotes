@@ -188,6 +188,7 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         /// <summary>
         /// Get the label using User level.
         /// </summary>
@@ -200,6 +201,32 @@
             try
             {
                 List<LabelModel> result = this.labelManager.GetLabelUsingUserId(notesId);
+                if (result != null)
+                {
+                    return this.Ok(new ResponseModel<List<LabelModel>>() { Status = true, Message = "Retrieved Label", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new ResponseModel<List<LabelModel>>() { Status = false, Message = "Couldn't retrieve", Data = result });
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
+            }
+        }
+        /// <summary>
+        /// Get the label using User level.
+        /// </summary>
+        /// <param name="labelId">The notes id.</param>
+        /// <returns>Returns exception.</returns>
+        [HttpGet]
+        [Route("api/GetLabelUsingNotesId")]
+        public IActionResult GetLabelUsingLabelId(int labelId)
+        {
+            try
+            {
+                List<LabelModel> result = this.labelManager.GetLabelUsingUserId(labelId);
                 if (result != null)
                 {
                     return this.Ok(new ResponseModel<List<LabelModel>>() { Status = true, Message = "Retrieved Label", Data = result });

@@ -1,19 +1,29 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using FandooNotes.Managers.Interface;
-using FandooNotes.Models;
-using Models;
-using StackExchange.Redis;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Http;
+﻿using Models;
 
 namespace FandooNotes.Controllers
 {
+    using System;
+    using FandooNotes.Managers.Interface;
+    using FandooNotes.Models;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using StackExchange.Redis;
+
+    /// <summary>
+    /// UserController Class.
+    /// </summary>
     public class UserController : ControllerBase
     {
         private readonly IUserManager manager;
         private readonly ILogger<UserController> logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserController"/> class.
+        /// User Controller Constructor.
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <param name="logger"></param>
         public UserController(IUserManager manager, ILogger<UserController> logger)
         {
             this.manager = manager;

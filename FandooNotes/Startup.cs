@@ -97,6 +97,12 @@ namespace FundooNotes
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
+        /// <summary>
+        /// Configure method.
+        /// </summary>
+        /// <param name="app">App parameter</param>
+        /// <param name="env">Environment Parameter</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -123,7 +129,7 @@ namespace FundooNotes
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseSwagger();
             app.UseSwaggerUI(c =>
