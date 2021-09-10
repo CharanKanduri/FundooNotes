@@ -183,5 +183,22 @@ namespace Repository.Repository
                 throw new Exception(ex.Message);
             }
         }
+        public List<LabelModel> GetLabelUsingLabelId(int labelId)
+        {
+            try
+            {
+                var listLabel = this.userContext.Labels.Where(label => labelId == label.LabelId).ToList();
+                if (listLabel.Count != 0)
+                {
+                    return listLabel;
+                }
+
+                return null;
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

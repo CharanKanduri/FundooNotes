@@ -16,7 +16,8 @@ namespace Manager.Interface
         public string RemoveLabelUsingNoteId(int noteId);
         public string RemoveLabelUsingLabelId(int lableId);
         public List<LabelModel> GetLabelByNoteId(int noteId);
+        public List<LabelModel> GetLabelUsingLabelId(int labelId);
         public List<LabelModel> GetLabelUsingUserId(int userId);
-        public List<LabelModel> GetLabelUsingUserId(int userId);
+        
     }
 }

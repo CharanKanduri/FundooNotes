@@ -14,6 +14,7 @@ namespace Repository.Interface
         string RemoveLabelUsingEditLebels(LabelModel lableModel, int userId);
         public string RemoveLabelUsingNoteId(int noteId);
         public string EditLabelUsingEdit(LabelModel lableModel, string newLabelName);
+        public List<LabelModel> GetLabelUsingLabelId(int labelId);
         public string RemoveLabelUsingLabelId(int lableId);
         public List<LabelModel> GetLabelByNoteId(int noteId);
         public List<LabelModel> GetLabelUsingUserId(int userId);

@@ -66,6 +66,20 @@ namespace Manager.Manager
             }
         }
 
+        public List<LabelModel> GetLabelUsingLabelId(int labelId)
+        {
+            try
+            {
+                return this.labelRepository.GetLabelUsingLabelId(labelId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        
+
         public List<LabelModel> GetLabelUsingUserId(int userId)
         {
             try
@@ -113,16 +127,6 @@ namespace Manager.Manager
                 throw new Exception(ex.Message);
             }
         }
-        public string GetLabelUsingNoteId(int noteId)
-        {
-            try
-            {
-                return this.labelRepository.GetLabelUsingNoteId(noteId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        
     }
 }
