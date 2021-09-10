@@ -69,8 +69,6 @@ namespace Repository.Repository
             }
         }
 
-       
-
         public bool IsArchieve(int noteId)
         {
             try

@@ -1,5 +1,6 @@
 namespace FundooNotes
 {
+    using System.Text;
     using FandooNotes.Managers;
     using FandooNotes.Managers.Interface;
     using FandooNotes.Repository;
@@ -18,12 +19,11 @@ namespace FundooNotes
     using Repository.Context;
     using Repository.Interface;
     using Repository.Repository;
-    using System;
-    using System.Text;
 
     public class Startup
     {
         public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
@@ -32,11 +32,6 @@ namespace FundooNotes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(2);
-            });
             services.AddMvc();
             services.AddDbContextPool<UserContext>(options => options.UseSqlServer(this.Configuration.GetConnectionString("UserDbconnection")));
 

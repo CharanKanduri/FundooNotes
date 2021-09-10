@@ -200,7 +200,6 @@
         {
             try
             {
-                ////Send user data to manager
                 List<LabelModel> result = this.labelManager.GetLabelByNoteId(noteId);
                 if (result != null)
                 {

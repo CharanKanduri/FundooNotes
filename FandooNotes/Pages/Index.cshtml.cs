@@ -19,7 +19,6 @@ namespace FandooNotes.Pages
 
         public void OnGet()
         {
-
         }
     }
 }
