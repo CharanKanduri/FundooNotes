@@ -56,10 +56,10 @@ namespace FandooNotes.Repository
                 string encodedPassword = EncodePasswordToBase64(userData.Password);
                 var loginResult = this.userContext.Users.Where(x => x.Email == userData.Email && x.Password == encodedPassword).FirstOrDefault();
                 ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-                IDatabase database = connectionMultiplexer.GetDatabase();
-                database.StringSet(key: "FirstName", loginResult.FirstName);
-                database.StringSet(key: "LastName", loginResult.LastName);
-                database.StringSet(key: "UserId", loginResult.UserId.ToString());
+                IDatabase data = connectionMultiplexer.GetDatabase();
+                data.StringSet(key: "FirstName", loginResult.FirstName);
+                data.StringSet(key: "LastName", loginResult.LastName);
+                data.StringSet(key: "UserId", loginResult.UserId.ToString());
                 if (loginResult != null)
                 {
                     return true;
