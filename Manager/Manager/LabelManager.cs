@@ -113,5 +113,16 @@ namespace Manager.Manager
                 throw new Exception(ex.Message);
             }
         }
+        public string GetLabelUsingNoteId(int noteId)
+        {
+            try
+            {
+                return this.labelRepository.GetLabelUsingNoteId(noteId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

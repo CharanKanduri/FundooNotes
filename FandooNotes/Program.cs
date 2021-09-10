@@ -1,17 +1,22 @@
-using FundooNotes;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace FandooNotes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using FundooNotes;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
+
+/// <summary>
+/// Program Class.
+/// </summary>
     public class Program
-    {
+    {/// <summary>
+     /// Main Method.
+     /// </summary>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
