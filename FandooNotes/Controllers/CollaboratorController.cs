@@ -9,7 +9,7 @@
     using Models;
 
     /// <summary>
-    /// Collaborator controller is where all route for application is defines.
+    /// Collaborator controller all paths are defined.
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     public class CollaboratorController : ControllerBase
