@@ -1,25 +1,44 @@
-﻿namespace FundooNotes.Controllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NotesController.cs" company="Bridgelabz">
+//   Copyright © 2021 Company="BridgeLabz"
+// </copyright>
+// <creator name="Charan Kanduri"/>
+// ----------------------------------------------------------------------------------------------------------
+namespace FundooNotes.Controllers
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Manager.Interface;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models;
 
+    /// <summary>
+    /// Notes controller where all route for application is defines.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Authorize]
     public class NotesController : ControllerBase
     {
+        /// <summary>
+        /// variable of Interface note manager.
+        /// </summary>
         private readonly INotesManager notesManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotesController"/> class.
+        /// </summary>
+        /// <param name="notesManager">The notes.</param>
         public NotesController(INotesManager notesManager)
         {
             this.notesManager = notesManager;
         }
-
+        /// <summary>
+        /// Create a note.
+        /// </summary>
+        /// <param name="noteData">Note data variable</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/CreateNote")]
         public IActionResult CreateNote([FromBody] NotesModel noteData)
@@ -41,7 +60,11 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Is pin Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/Ispin")]
         public IActionResult Ispin(int noteId)
@@ -63,7 +86,11 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Is Archieve Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/IsArchieve")]
         public IActionResult IsArchieve(int noteId)
@@ -85,7 +112,11 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Is Delete Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/IsDelete")]
         public IActionResult IsDelete(int noteId)
@@ -107,7 +138,11 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Is Restore Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/IsRestore")]
         public IActionResult IsRestore(int noteId)
@@ -129,10 +164,15 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Add colour Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable</param>
+        /// <param name="colorName">color name string.</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/color")]
-        public IActionResult color(int noteId, string colorName)
+        public IActionResult Color(int noteId, string colorName)
         {
             try
             {
@@ -151,7 +191,12 @@
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Add Reminder Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable</param>
+        /// <param name="date">date string.</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/RemindMe")]
         public IActionResult RemindMe(int noteId, string date)
@@ -174,6 +219,11 @@
             }
         }
 
+        /// <summary>
+        /// Remove Reminder Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPost]
         [Route("api/RemoveReminder")]
         public IActionResult RemoveReminder(int noteId)
@@ -196,6 +246,13 @@
             }
         }
 
+        /// <summary>
+        /// Update Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable.</param>
+        /// <param name="noteData">Note model variable.</param>
+        /// <returns>Retrieve success message.</returns>
+        [HttpPost]
         [HttpPost]
         [Route("api/Update")]
         public IActionResult Update(int noteId, [FromBody] NotesModel noteData)
@@ -218,6 +275,11 @@
             }
         }
 
+        /// <summary>
+        /// permanent Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpDelete]
         [Route("api/PermanentDelete")]
         public IActionResult PermanentDelete(int noteId)
@@ -240,13 +302,18 @@
             }
         }
 
+        /// <summary>
+        /// Get Notes Method.
+        /// </summary>
+        /// <param name="userId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPost]
         [Route("api/GetNotes")]
-        public IActionResult GetNotes(int UserId)
+        public IActionResult GetNotes(int userId)
         {
             try
             {
-                List<NotesModel> currentNotes = this.notesManager.GetNotes(UserId);
+                List<NotesModel> currentNotes = this.notesManager.GetNotes(userId);
 
                 if (currentNotes != null)
                 {
@@ -263,13 +330,18 @@
             }
         }
 
+        /// <summary>
+        /// Get notes from trash Method.
+        /// </summary>
+        /// <param name="userId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPost]
         [Route("api/GetFromTrash")]
-        public IActionResult GetFromTrash(int UserId)
+        public IActionResult GetFromTrash(int userId)
         {
             try
             {
-                List<NotesModel> currentNotes = this.notesManager.GetFromTrash(UserId);
+                List<NotesModel> currentNotes = this.notesManager.GetFromTrash(userId);
                 if (currentNotes != null)
                 {
                     return this.Ok(new ResponseModel<List<NotesModel>>() { Status = true, Message = " Successfull ", Data = currentNotes });
@@ -285,13 +357,18 @@
             }
         }
 
+        /// <summary>
+        /// Get All reminders Method.
+        /// </summary>
+        /// <param name="userId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPost]
         [Route("api/GetAllRemainders")]
-        public IActionResult GetAllRemainders(int UserId)
+        public IActionResult GetAllRemainders(int userId)
         {
             try
             {
-                List<NotesModel> currentNotes = this.notesManager.GetAllRemainders(UserId);
+                List<NotesModel> currentNotes = this.notesManager.GetAllRemainders(userId);
                 if (currentNotes != null)
                 {
                     return this.Ok(new ResponseModel<List<NotesModel>>() { Status = true, Message = " Successfull ", Data = currentNotes });
@@ -307,13 +384,18 @@
             }
         }
 
+        /// <summary>
+        /// Get notes from Archievers Method.
+        /// </summary>
+        /// <param name="userId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPost]
         [Route("api/GetFromArchieve")]
-        public IActionResult GetFromArchieve(int UserId)
+        public IActionResult GetFromArchieve(int userId)
         {
             try
             {
-                List<NotesModel> currentNotes = this.notesManager.GetFromArchieve(UserId);
+                List<NotesModel> currentNotes = this.notesManager.GetFromArchieve(userId);
                 if (currentNotes != null)
                 {
                     return this.Ok(new ResponseModel<List<NotesModel>>() { Status = true, Message = " Successfull ", Data = currentNotes });
@@ -329,13 +411,18 @@
             }
         }
 
+        /// <summary>
+        /// Empty trash Method.
+        /// </summary>
+        /// <param name="userId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpDelete]
         [Route("api/EmptyTrash")]
-        public IActionResult EmptyTrash(int UserId)
+        public IActionResult EmptyTrash(int userId)
         {
             try
             {
-                bool result = this.notesManager.EmptyTrash(UserId);
+                bool result = this.notesManager.EmptyTrash(userId);
                 if (result == true)
                 {
                     return this.Ok(new ResponseModel<List<NotesModel>>() { Status = true, Message = " Empty trash Successfull " });
@@ -351,6 +438,12 @@
             }
         }
 
+        /// <summary>
+        /// Add image Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable.</param>
+        /// <param name="image">I form file type.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPost]
         [Route("api/AddImage")]
         public IActionResult AddImage(int noteId, IFormFile image)
@@ -373,6 +466,11 @@
             }
         }
 
+        /// <summary>
+        /// Remove image Method.
+        /// </summary>
+        /// <param name="noteId">Note data variable.</param>
+        /// <returns>Retrieve success message.</returns>
         [HttpPut]
         [Route("api/RemoveImage")]
         public IActionResult RemoveImage(int noteId)

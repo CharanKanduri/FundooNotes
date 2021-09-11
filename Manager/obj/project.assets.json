@@ -673,6 +673,15 @@
           "lib/net5.0/StackExchange.Redis.dll": {}
         }
       },
+      "StyleCop/6.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/StyleCop.dll": {}
+        },
+        "runtime": {
+          "lib/net40/StyleCop.dll": {}
+        }
+      },
       "System.Collections.Immutable/5.0.0": {
         "type": "package",
         "compile": {
@@ -2095,6 +2104,19 @@
         "stackexchange.redis.nuspec"
       ]
     },
+    "StyleCop/6.2.0": {
+      "sha512": "rCRzMtLw9tR5fBjMrO8FwNg/ybY3ktHusktboZz0UtzzRAbI6BC9/0BaXNtk+mFZ0eldKI7/BKSVaRvhVCqfAQ==",
+      "type": "package",
+      "path": "stylecop/6.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/StyleCop.dll",
+        "lib/net40/StyleCop.xml",
+        "stylecop.6.2.0.nupkg.sha512",
+        "stylecop.nuspec"
+      ]
+    },
     "System.Collections.Immutable/5.0.0": {
       "sha512": "FXkLXiK0sVVewcso0imKQoOxjoPAj42R8HtjjbSjVPAzwDfzoyoznWxgA3c38LDbN9SJux1xXoXYAhz98j7r2g==",
       "type": "package",
@@ -2781,7 +2803,8 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Models >= 1.0.0",
-      "Repository >= 1.0.0"
+      "Repository >= 1.0.0",
+      "StyleCop >= 6.2.0"
     ]
   },
   "packageFolders": {
@@ -2834,6 +2857,12 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
+        "dependencies": {
+          "StyleCop": {
+            "target": "Package",
+            "version": "[6.2.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -2852,5 +2881,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'StyleCop 6.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "StyleCop",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
