@@ -60,6 +60,7 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         /// <summary>
         /// Is pin Method.
         /// </summary>
@@ -86,11 +87,12 @@ namespace FundooNotes.Controllers
                 return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
+
         /// <summary>
         /// Is Archieve Method.
         /// </summary>
-        /// <param name="noteId">Note data variable</param>
-        /// <returns>Retrieve success message</returns>
+        /// <param name="noteId">Note data variable.</param>
+        /// <returns>Retrieve success message,</returns>
         [HttpPost]
         [Route("api/IsArchieve")]
         public IActionResult IsArchieve(int noteId)

@@ -673,14 +673,8 @@
           "lib/net5.0/StackExchange.Redis.dll": {}
         }
       },
-      "StyleCop/6.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/StyleCop.dll": {}
-        },
-        "runtime": {
-          "lib/net40/StyleCop.dll": {}
-        }
+      "StyleCop.Analyzers/1.1.118": {
+        "type": "package"
       },
       "System.Collections.Immutable/5.0.0": {
         "type": "package",
@@ -2104,17 +2098,29 @@
         "stackexchange.redis.nuspec"
       ]
     },
-    "StyleCop/6.2.0": {
-      "sha512": "rCRzMtLw9tR5fBjMrO8FwNg/ybY3ktHusktboZz0UtzzRAbI6BC9/0BaXNtk+mFZ0eldKI7/BKSVaRvhVCqfAQ==",
+    "StyleCop.Analyzers/1.1.118": {
+      "sha512": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
       "type": "package",
-      "path": "stylecop/6.2.0",
+      "path": "stylecop.analyzers/1.1.118",
+      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net40/StyleCop.dll",
-        "lib/net40/StyleCop.xml",
-        "stylecop.6.2.0.nupkg.sha512",
-        "stylecop.nuspec"
+        "LICENSE",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/StyleCop.Analyzers.CodeFixes.dll",
+        "analyzers/dotnet/cs/StyleCop.Analyzers.dll",
+        "analyzers/dotnet/cs/de-DE/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/en-GB/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/es-MX/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/fr-FR/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/pl-PL/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/pt-BR/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/ru-RU/StyleCop.Analyzers.resources.dll",
+        "stylecop.analyzers.1.1.118.nupkg.sha512",
+        "stylecop.analyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "System.Collections.Immutable/5.0.0": {
@@ -2804,7 +2810,7 @@
     "net5.0": [
       "Models >= 1.0.0",
       "Repository >= 1.0.0",
-      "StyleCop >= 6.2.0"
+      "StyleCop.Analyzers >= 1.1.118"
     ]
   },
   "packageFolders": {
@@ -2858,9 +2864,11 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
-          "StyleCop": {
+          "StyleCop.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[6.2.0, )"
+            "version": "[1.1.118, )"
           }
         },
         "imports": [
@@ -2881,17 +2889,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'StyleCop 6.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "StyleCop",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  }
 }

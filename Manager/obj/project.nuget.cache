@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oH3CghlaL47oB9YDbyMH97hIiV8xgGhplcqJHPzuJAZVqWmLpP1SRLo+3nJtuGi9manNxkHaqbIyVgRx78Bj3A==",
+  "dgSpecHash": "Wl/qjK0wrz69frGKD0w59KRCh44m4bRzBucmWP6OxwVkSd1/N8YaKEt3hACESmeEieRneb1LMuCWAEYbIqIPzA==",
   "success": true,
   "projectFilePath": "C:\\Users\\charan kanduri\\source\\repos\\Manager\\Manager.csproj",
   "expectedPackageFiles": [
@@ -55,7 +55,7 @@
     "C:\\Users\\charan kanduri\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.0\\pipelines.sockets.unofficial.2.2.0.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\stackexchange.redis\\2.2.50\\stackexchange.redis.2.2.50.nupkg.sha512",
-    "C:\\Users\\charan kanduri\\.nuget\\packages\\stylecop\\6.2.0\\stylecop.6.2.0.nupkg.sha512",
+    "C:\\Users\\charan kanduri\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
@@ -75,16 +75,5 @@
     "C:\\Users\\charan kanduri\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\charan kanduri\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'StyleCop 6.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "StyleCop",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  "logs": []
 }
