@@ -11,8 +11,9 @@ namespace FandooNotes.Controllers
     using StackExchange.Redis;
 
     /// <summary>
-    /// UserController Class.
+    /// User controller is where all route for application is defines.
     /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase"/>
     public class UserController : ControllerBase
     {
         private readonly IUserManager manager;
@@ -22,28 +23,33 @@ namespace FandooNotes.Controllers
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// User Controller Constructor.
         /// </summary>
-        /// <param name="manager"></param>
-        /// <param name="logger"></param>
+        /// <param name="manager">Manager instance</param>
+        /// <param name="logger">Logger instance</param>
         public UserController(IUserManager manager, ILogger<UserController> logger)
         {
             this.manager = manager;
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Register method.
+        /// </summary>
+        /// <param name="userData">Register Model.</param>
+        /// <returns>Retrieve success message</returns>
         [HttpPost]
         [Route("api/register")]
         public IActionResult Register([FromBody]RegisterModel userData)
         {
             try
             {
-                string SessionFirstName = "";
-                string SessionEmail = "";
+                string sessionFirstName = string.Empty;
+                string sessionEmail = string.Empty;
                 bool result = this.manager.Register(userData);
                 if (result == true)
                 {
                     this.logger.LogInformation($" A New Register '{userData.Email}' is Successfull Added ");
-                    HttpContext.Session.SetString(SessionFirstName, userData.FirstName);
-                    HttpContext.Session.SetString(SessionEmail, userData.Email);
+                    HttpContext.Session.SetString(sessionFirstName, userData.FirstName);
+                    HttpContext.Session.SetString(sessionEmail, userData.Email);
                     return this.Ok(new ResponseModel<string>() { Status = true, Message = "New User Added Successfully !!" });
                 }
                 else
@@ -59,6 +65,11 @@ namespace FandooNotes.Controllers
             }
         }
 
+        /// <summary>
+        /// Login Method.
+        /// </summary>
+        /// <param name="loginData">The label model.</param>
+        /// <returns>Returns exception.</returns>
         [HttpPost]
         [Route("api/Login")]
         public IActionResult Login([FromBody] LoginModel loginData)
@@ -92,9 +103,13 @@ namespace FandooNotes.Controllers
             }
         }
 
+        /// <summary>
+        /// ForgetPassword Method.
+        /// </summary>
+        /// <param name="email">Email string.</param>
+        /// <returns>Returns exception.</returns>
         [HttpPost]
         [Route("api/forgetpassword")]
-
         public IActionResult ForgetPassword(string email)
         {
             try
@@ -118,6 +133,11 @@ namespace FandooNotes.Controllers
             }
         }
 
+        /// <summary>
+        /// Reset password Method.
+        /// </summary>
+        /// <param name="resetPasswordData">Reset password model.</param>
+        /// <returns>Returns exception.</returns>
         [HttpPost]
         [Route("api/ResetPassword")]
         public IActionResult ResetPassword([FromBody] ResetPasswordModel resetPasswordData)
